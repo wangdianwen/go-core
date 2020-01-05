@@ -1,7 +1,7 @@
 package structures
 
 import (
-	"github.com/wangdianwen/go-core.git/models"
+	"go-core/models"
 )
 
 type UserDetail struct {

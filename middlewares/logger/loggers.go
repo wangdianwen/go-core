@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/logs"
-	"github.com/wangdianwen/go-core.git/middlewares/email/models"
-	"github.com/wangdianwen/go-core.git/utils"
+	"go-core/middlewares/email/models"
+	"go-core/utils"
 	"runtime"
 	"strings"
 )

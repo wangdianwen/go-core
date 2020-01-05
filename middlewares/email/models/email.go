@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/astaxie/beego"
-	task "github.com/wangdianwen/go-core.git/middlewares/task/models"
-	"github.com/wangdianwen/go-core.git/utils"
+	task "go-core/middlewares/task/models"
+	"go-core/utils"
 )
 
 var (

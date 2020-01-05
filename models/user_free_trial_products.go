@@ -3,9 +3,9 @@ package models
 import (
 	"encoding/json"
 	"github.com/astaxie/beego/orm"
-	"github.com/wangdianwen/go-core.git/configs/constants"
-	task "github.com/wangdianwen/go-core.git/middlewares/task/models"
-	"github.com/wangdianwen/go-core.git/utils"
+	"go-core/configs/constants"
+	task "go-core/middlewares/task/models"
+	"go-core/utils"
 	"math"
 	"math/rand"
 	"strconv"

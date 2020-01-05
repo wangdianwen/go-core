@@ -5,8 +5,8 @@ import (
 	"errors"
 	"fmt"
 	"github.com/astaxie/beego"
-	"github.com/wangdianwen/go-core.git/middlewares/logger"
-	task "github.com/wangdianwen/go-core.git/middlewares/task/models"
+	"go-core/middlewares/logger"
+	task "go-core/middlewares/task/models"
 	"gopkg.in/gomail.v2"
 )
 

@@ -2,9 +2,9 @@ package controllers
 
 import (
 	"encoding/json"
-	"github.com/wangdianwen/go-core.git/configs/constants"
-	"github.com/wangdianwen/go-core.git/models"
-	"github.com/wangdianwen/go-core.git/utils"
+	"go-core/configs/constants"
+	"go-core/models"
+	"go-core/utils"
 	"strconv"
 	"time"
 )
