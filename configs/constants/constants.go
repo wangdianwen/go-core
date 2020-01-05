@@ -1,6 +1,6 @@
 package constants
 
-import "go-core/utils"
+import "github.com/wangdianwen/go-core/utils"
 
 const (
 	AppName = utils.APPCore

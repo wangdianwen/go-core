@@ -2,9 +2,9 @@ package controllers
 
 import (
 	"encoding/json"
-	"go-core/middlewares"
-	"go-core/middlewares/email/models"
-	"go-core/utils"
+	"github.com/wangdianwen/go-core/middlewares"
+	"github.com/wangdianwen/go-core/middlewares/email/models"
+	"github.com/wangdianwen/go-core/utils"
 )
 
 type Email struct {

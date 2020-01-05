@@ -1,8 +1,8 @@
 package controllers
 
 import (
-	"go-core/middlewares"
-	"go-core/utils"
+	"github.com/wangdianwen/go-core/middlewares"
+	"github.com/wangdianwen/go-core/utils"
 )
 
 type Captcha struct {

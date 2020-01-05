@@ -2,7 +2,7 @@ package models
 
 import (
 	"fmt"
-	"go-core/utils"
+	"github.com/wangdianwen/go-core/utils"
 	"time"
 
 	"github.com/astaxie/beego/orm"

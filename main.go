@@ -8,8 +8,8 @@ import (
 	_ "github.com/astaxie/beego/session/mysql"
 	"github.com/astaxie/beego/toolbox"
 	_ "github.com/go-sql-driver/mysql"
-	EmailScripts "go-core/middlewares/email/scripts"
-	_ "go-core/routers"
+	EmailScripts "github.com/wangdianwen/go-core/middlewares/email/scripts"
+	_ "github.com/wangdianwen/go-core/routers"
 )
 
 func main() {

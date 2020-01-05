@@ -2,7 +2,7 @@ package models
 
 import (
 	"github.com/astaxie/beego/orm"
-	"go-core/utils"
+	"github.com/wangdianwen/go-core/utils"
 	"math/rand"
 	"time"
 )

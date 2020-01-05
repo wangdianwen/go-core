@@ -9,9 +9,9 @@ package routers
 
 import (
 	"github.com/astaxie/beego"
-	"go-core/controllers"
-	servicesCaptcha "go-core/middlewares/captcha/controllers"
-	servicesEmail "go-core/middlewares/email/controllers"
+	"github.com/wangdianwen/go-core/controllers"
+	servicesCaptcha "github.com/wangdianwen/go-core/middlewares/captcha/controllers"
+	servicesEmail "github.com/wangdianwen/go-core/middlewares/email/controllers"
 )
 
 func init() {

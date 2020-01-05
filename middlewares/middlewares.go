@@ -2,7 +2,7 @@ package middlewares
 
 import (
 	"github.com/astaxie/beego"
-	"go-core/utils"
+	"github.com/wangdianwen/go-core/utils"
 )
 
 type Services struct {

@@ -2,8 +2,8 @@ package controllers
 
 import (
 	"encoding/json"
-	"go-core/models"
-	"go-core/utils"
+	"github.com/wangdianwen/go-core/models"
+	"github.com/wangdianwen/go-core/utils"
 	"strconv"
 	"time"
 )
