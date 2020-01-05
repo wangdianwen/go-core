@@ -1,4 +1,4 @@
-module go-core
+module github.com/wangdianwen/go-core
 
 go 1.13
 
