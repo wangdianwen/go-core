@@ -16,6 +16,7 @@ type Menu struct {
 	Visible    int8         `orm:"column(visible)" description:"is visible;0: visile, 1 hide" json:"visible"`
 	Ctime      time.Time    `orm:"column(ctime);type(datetime)" description:"create time" json:"ctime"`
 	Mtime      time.Time    `orm:"column(mtime);type(datetime)" description:"modify time" json:"mtime"`
+	Level      int          `orm:"-" json:"level"`
 	Children   []*Menu      `orm:"-" json:"children"`
 	Privileges []*Privilege `orm:"-" json:"privileges"`
 }

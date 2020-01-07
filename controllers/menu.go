@@ -236,45 +236,12 @@ func (c *MenuController) CurrentMenu() {
 		return
 	}
 	menus := userDetail.Menus
-	// format menu data
-	relations := make(map[int][]interface{})
-	for _, menu := range menus {
-		paid := menu.Paid
-		tmp := make(map[string]interface{})
-		tmp["name"] = menu.Name
-		tmp["path"] = menu.Url
-		tmp["id"] = menu.Id
-		tmp["authority"] = menu.Url
-		if menu.Visible == 1 {
-			tmp["hideInMenu"] = true
-		}
-		if _, exist := relations[paid]; exist {
-			relations[paid] = append(relations[paid], tmp)
-		} else {
-			relations[paid] = make([]interface{}, 0)
-			relations[paid] = append(relations[paid], tmp)
-		}
-	}
-	mList := make([]map[string]interface{}, 0)
-	for _, menu := range menus {
-		if menu.Paid != 0 {
-			continue
-		}
-		tmp := make(map[string]interface{})
-		tmp["name"] = menu.Name
-		tmp["path"] = menu.Url
-		tmp["authority"] = menu.Name
-		if menu.Visible == 1 {
-			tmp["hideInMenu"] = true
-		}
-		if _, exist := relations[menu.Id]; exist {
-			tmp["children"] = relations[menu.Id]
-		}
-		mList = append(mList, tmp)
-	}
+	menus = generateMenuTree(menus, 0, 0)
+	mList := formatMenuData(menus)
 	c.Data["json"] = &utils.JSONStruct{Code: utils.Success, Msg: "success", Data: mList}
 	c.ServeJSON()
 }
+
 
 // get current menu
 func (c *MenuController) CurrentMenuNames() {
@@ -285,20 +252,64 @@ func (c *MenuController) CurrentMenuNames() {
 		return
 	}
 	menus := userDetail.Menus
-	// format menu data
-	relations := make(map[int]*models.Menu)
-	for _, menu := range menus {
-		relations[menu.Id] = menu
-	}
-	mList := make([]string, 0)
-	for _, menu := range menus {
-		menuName := menu.Name
-		paid := menu.Paid
-		if paid != 0 {
-			menuName = relations[paid].Name + "." + menuName
-		}
-		mList = append(mList, menuName)
-	}
-	c.Data["json"] = &utils.JSONStruct{Code: utils.Success, Msg: "success", Data: mList}
+	menus = generateMenuTree(menus, 0, 0)
+	var mNames []string
+	formatMenuNames(menus, "", &mNames)
+	c.Data["json"] = &utils.JSONStruct{Code: utils.Success, Msg: "success", Data: mNames}
 	c.ServeJSON()
 }
+
+func generateMenuTree(menus []*models.Menu, pid int, level int) []*models.Menu {
+	ret := make([]*models.Menu, 0)
+	level += 1
+	for _, menu := range menus {
+		if menu.Paid == pid {
+			menu.Level = level
+			menu.Children = generateMenuTree(menus, menu.Id, level)
+			ret = append(ret, menu)
+		}
+	}
+	return ret
+}
+
+func formatMenuData(menus []*models.Menu) []map[string]interface{} {
+	var mList []map[string]interface{}
+	for _, menu := range menus {
+		tmp := make(map[string]interface{})
+		tmp["name"] = menu.Name
+		tmp["path"] = menu.Url
+		tmp["authority"] = menu.Name
+		if menu.Visible == 1 {
+			tmp["hideInMenu"] = true
+		}
+		if len(menu.Children) != 0 {
+			tmp["children"] = formatMenuData(menu.Children)
+		}
+		mList = append(mList, tmp)
+	}
+	return mList
+}
+
+func formatMenuNames(menus []*models.Menu, preName string, ret *[]string) {
+	for _, menu := range menus {
+		if menu.Paid == 0 {
+			preName = menu.Name
+			*ret = append(*ret, preName)
+		}
+		if len(menu.Children) > 0 {
+			if menu.Paid > 0 {
+				preName = preName + "." + menu.Name
+				*ret = append(*ret, preName)
+			}
+			formatMenuNames(menu.Children, preName, ret)
+		} else {
+			menuName := preName + "." + menu.Name
+			*ret = append(*ret, menuName)
+		}
+	}
+}
+
+
+
+
+
